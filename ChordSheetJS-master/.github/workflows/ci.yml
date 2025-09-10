@@ -1,0 +1,114 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  build-ubuntu:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    strategy:
+      matrix:
+        node-version: [ 18.x, 20.x, 22.x ]
+    name: Ubuntu NodeJS ${{ matrix.node-version }} sample
+    steps:
+      - uses: actions/checkout@v5
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Enable Corepack
+        run: corepack enable
+      - name: Install node modules
+        run: yarn install
+      - name: Run tests
+        run: yarn ci
+
+  check-trailing-whitespace:
+    runs-on: ubuntu-latest
+    name: Check trailing whitespace
+    steps:
+      - uses: actions/checkout@v5
+      - name: Enable Corepack
+        run: corepack enable
+      - name: Install node modules
+        run: yarn install
+      - name: Check trailing whitespace
+        run: git ls-files | yarn tsx script/check_trailing_whitespace.ts
+
+  check-deprecated-packages:
+    runs-on: ubuntu-latest
+    name: Check deprecated packages
+    steps:
+      - uses: actions/checkout@v5
+      - name: Enable Corepack
+        run: corepack enable
+      - name: Check deprecated packages
+        run: bin/check_deprecated_packages
+
+  build-windows:
+    continue-on-error: true
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        node-version: [ 22.x ]
+    name: Windows NodeJS ${{ matrix.node-version }} sample
+    steps:
+      - uses: actions/checkout@v5
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Enable Corepack
+        run: corepack enable
+      - name: Install node modules
+        run: yarn install
+      - name: Run tests
+        run: yarn ci
+
+  generate-typedoc:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [ 22.x ]
+    name: Generate typedoc
+    steps:
+      - uses: actions/checkout@v5
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Enable Corepack
+        run: corepack enable
+      - name: Install node modules
+        run: yarn install
+      - name: Build
+        run: yarn build
+      - name: Generate typedoc
+        run: yarn typedoc
+      - name: Upload static files as artifact
+        id: deployment
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: tmp/docs
+
+  verify-install:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [ 22.x ]
+    name: Verify NodeJS installation
+    steps:
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Enable Corepack
+        run: corepack enable
+      - name: Verify install
+        run: YARN_ENABLE_IMMUTABLE_INSTALLS=false npm install "https://github.com/martijnversluis/ChordSheetJS/tree/$GITHUB_SHA"

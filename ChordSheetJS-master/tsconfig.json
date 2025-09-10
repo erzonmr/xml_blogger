@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "outDir": "./lib",
+    "module": "commonjs",
+    "target": "es2018",
+    "moduleResolution": "node",
+    "lib": ["es2018", "es2019", "dom"],
+    "types": ["node", "jest"],
+    "downlevelIteration": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "noEmitOnError":  true,
+    "noImplicitAny": false,
+    "noFallthroughCasesInSwitch":  true,
+    "forceConsistentCasingInFileNames": true,
+    "strictNullChecks": true,
+    "strict": true
+  },
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "exclude": ["./unibuild.ts"]
+}
