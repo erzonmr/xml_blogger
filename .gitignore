@@ -1,0 +1,150 @@
+# =================================
+# ARCHIVOS PRINCIPALES (NO IGNORAR)
+# =================================
+# ¡IMPORTANTE! Mantener el XML principal
+!Lyricist Premium Version.xml
+!Lyricist-Premium-Version.xml
+
+# =================================
+# VERSIONES Y BACKUPS
+# =================================
+# Backups automáticos
+Lyricist Premium Version-backup*.xml
+Lyricist-Premium-Version-backup*.xml
+backup-*.xml
+*-backup-*.xml
+
+# Versiones antiguas
+Lyricist Premium Version-old*.xml
+Lyricist-Premium-Version-old*.xml
+*-previous.xml
+*-v[0-9]*.xml
+
+# Versiones de prueba
+Lyricist Premium Version-test*.xml
+Lyricist-Premium-Version-test*.xml
+test-*.xml
+demo-*.xml
+
+# =================================
+# ARCHIVOS DEL SISTEMA
+# =================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
+# =================================
+# EDITORES DE CÓDIGO
+# =================================
+# VS Code
+.vscode/
+*.code-workspace
+/settings.json
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Sublime Text
+*.sublime-*
+sublime-*
+
+# Archivos temporales de editores
+*~
+*.swp
+*.swo
+*.un~
+
+# =================================
+# SISTEMA OPERATIVO
+# =================================
+# macOS
+.AppleDouble
+.LSOverride
+
+# Windows
+[Tt]humbs.db
+[Pp]review.db
+
+# =================================
+# ARCHIVOS DE DESARROLLO
+# =================================
+# Variables de entorno
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependencias (si usas preprocesadores)
+node_modules/
+bower_components/
+
+# =================================
+# ARCHIVOS COMPILADOS/MINIFICADOS
+# =================================
+# Si preprocesas CSS/JS para el template
+/assets/min/
+/assets/dist/
+*.min.css
+*.min.js
+*.min.css.map
+*.min.js.map
+
+# Build outputs
+/dist/
+/build/
+/out/
+
+# =================================
+# CONFIGURACIONES PERSONALES
+# =================================
+# Configuraciones específicas del desarrollador
+config.local.xml
+settings.local.xml
+personal-config.xml
+
+# Backup files
+*.backup
+*.bak
+*.old
+
+# =================================
+# ARCHIVOS TEMPORALES
+# =================================
+*.tmp
+*.temp
+.cache/
+.tmp/
+
+# =================================
+# DOCUMENTACIÓN
+# =================================
+# Si generas documentación
+/docs/build/
+/docs/output/
+/help/generated/
+
+# =================================
+# IMÁGENES DE PREVIEW
+# =================================
+# Si tienes screenshots de preview
+/preview/temp/
+/screenshots/work-in-progress/
+
+# =================================
+# GIT
+# =================================
+# Git ignore no debería ignorarse a sí mismo
+!.gitignore
